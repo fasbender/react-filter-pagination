@@ -18,13 +18,13 @@ const UserTable = ({checked, users, offset, PER_PAGE}) => {
                         <th>Username</th>
                     </tr>
                 </thead>
-            {users && users.slice(offset, offset + PER_PAGE).map((user, index) => {
+            {users && users.slice(offset, offset + PER_PAGE).map((user) => {
                 return(
                     <>
                         {
                             user.gender === "male" ?
 
-                            <tbody key={index}>
+                            <tbody key={user.id.value}>
                                 <tr>
                                     <td>
                                         <div className='user-info'>
@@ -61,13 +61,13 @@ const UserTable = ({checked, users, offset, PER_PAGE}) => {
                 <th>Username</th>
             </tr>
         </thead>
-            {users && users.slice(offset, offset + PER_PAGE).map((user, index) => {
+            {users && users.slice(offset, offset + PER_PAGE).map((user) => {
                 return(
                     <>
                         {
                             user.gender === "female" ?
 
-                            <tbody key={index}>
+                            <tbody key={user.id.value}>
                                 <tr>
                                     <td>
                                         <div>
@@ -104,9 +104,9 @@ const UserTable = ({checked, users, offset, PER_PAGE}) => {
                 <th>Username</th>
             </tr>
         </thead>
-            {users && users.slice(offset, offset + PER_PAGE).map((user, index) => {
+            {users && users.slice(offset, offset + PER_PAGE).map((user) => {
                 return(
-                    <tbody key={index}>
+                    <tbody key={user.id.value}>
                         <tr>
                             <td>
                                 <div>

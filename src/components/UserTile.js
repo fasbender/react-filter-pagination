@@ -8,13 +8,13 @@ const UserTile = ({checked, users, offset, PER_PAGE}) => {
             checked === "male" ?
 
             <>
-                {users && users.slice(offset, offset + PER_PAGE).map((user, index) => {
+                {users && users.slice(offset, offset + PER_PAGE).map((user) => {
                     return(
                         <>
                             {
                                 user.gender === "male" ?
 
-                                <div className='card' key={index}>
+                                <div className='card' key={user.id.value}>
                                     <div className='user-info'>
                                         <img src={user.picture.thumbnail} alt="user-picture" />
                                         <div>
@@ -42,13 +42,13 @@ const UserTile = ({checked, users, offset, PER_PAGE}) => {
             checked === "female" ?
                 
             <>
-                {users && users.slice(offset, offset + PER_PAGE).map((user, index) => {
+                {users && users.slice(offset, offset + PER_PAGE).map((user) => {
                     return(
                         <>
                             {
                                 user.gender === "female" ?
 
-                                <div className='card' key={index}>
+                                <div className='card' key={user.id.value}>
                                     <div className='user-info'>
                                         <img src={user.picture.thumbnail} alt="user-picture" />
                                         <div>
@@ -76,9 +76,9 @@ const UserTile = ({checked, users, offset, PER_PAGE}) => {
             checked === "all" ?
 
             <>
-                {users && users.slice(offset, offset + PER_PAGE).map((user, index) => {
+                {users && users.slice(offset, offset + PER_PAGE).map((user) => {
                     return(
-                        <div className='card' key={index}>
+                        <div className='card' key={user.id.value}>
                             <div className='user-info'>
                                 <img src={user.picture.thumbnail} alt="user-picture" />
                                 <div>

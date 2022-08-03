@@ -20,7 +20,7 @@ const Home = () => {
     const fetchUser = async() => {
             try {
                 setLoading(true)
-                const response = await axios.get('/api/?results=1000')
+                const response = await axios.get('/api/?results=100')
                 setUsers(response.data.results)
             } catch (error) {
                 console.log('data not found')
@@ -52,6 +52,19 @@ const Home = () => {
     setSearch(e.target.value)
   }
 
+
+  // const keys = ["name.first", "name.last", "email", "login.username"]
+  const Search = (data) => {
+    return data.filter(
+      (item) =>
+        item.name.first.toLowerCase().includes(search)||
+        item.name.last.toLowerCase().includes(search)||
+        item.email.toLowerCase().includes(search) ||
+        item.login.username.toLowerCase().includes(search)
+        // keys.some((key) => item[key].toLowerCase().includes(search))
+    )
+  }
+
   return (
     <div>
       <Filters handleChecked={handleChecked} handleTileView={handleTileView} tileView={tileView} search={search} handleSearch={handleSearch} />
@@ -63,19 +76,29 @@ const Home = () => {
           :
 
           <>
-          { tileView ? <UserTile checked={checked} users={users} loading={loading} offset={offset} PER_PAGE={PER_PAGE} /> : <UserTable checked={checked} users={users} loading={loading} offset={offset} PER_PAGE={PER_PAGE} /> }
-          <ReactPaginate
-            nextLabel=">>"
-            onPageChange={handlePagination}
-            pageCount={pageCount}
-            previousLabel="<<"
-            containerClassName={"pagination"}
-            activeClassName={"pagination-active"}
-            previousLinkClassName={"pagination-prev"}
-            nextLinkClassName={"pagination-next"}
-            pageClassName={"pagination-li"}
-            disabledClassName={"pagination-disable"}
-          />
+          {
+            users.length === 0 ?
+
+              <div>No user found</div>
+
+            :
+
+            <>
+                { tileView ? <UserTile checked={checked} users={Search(users)} loading={loading} offset={offset} PER_PAGE={PER_PAGE} /> : <UserTable checked={checked} users={Search(users)} loading={loading} offset={offset} PER_PAGE={PER_PAGE} /> }
+                <ReactPaginate
+                  nextLabel=">>"
+                  onPageChange={handlePagination}
+                  pageCount={pageCount}
+                  previousLabel="<<"
+                  containerClassName={"pagination"}
+                  activeClassName={"pagination-active"}
+                  previousLinkClassName={"pagination-prev"}
+                  nextLinkClassName={"pagination-next"}
+                  pageClassName={"pagination-li"}
+                  disabledClassName={"pagination-disable"}
+                />
+            </>
+          }
           </>
         }
     </div>
